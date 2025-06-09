@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import MovieCard from "../../common/MovieCard/MovieCard.jsx"
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
+import "./MoviePage.style.css";
 
 // 1. Navbar의 Movies를 클릭해서 이동 -> 키워드가 없음 --> popular
 // 2. 키워드로 검색한 경우 -> 관련된 영화들만 보여줌
@@ -45,17 +46,18 @@ const MoviePage = () => {
                 <Row>
                     <Col lg={4} xs={12}>FILTER</Col>
                     <Col lg={8} xs={12}>
-                        <Row>
+                        <Row className="g-4">
                         {data?.results.map((movie, index) =>
                             (<Col key={index} lg={4} xs={12}>
                                 <MovieCard movie={movie} />
                             </Col>
                         ))}                       
                         </Row>
-                        <ReactPaginate
+                        <div className="pagination-bar">   
+                            <ReactPaginate
                             nextLabel="NEXT >"
                             onPageChange={handlePageClick}
-                            pageRangeDisplayed={2   }
+                            pageRangeDisplayed={2}
                             marginPagesDisplayed={2}
                             pageCount={data?.total_pages} // 전체 페이지
                             previousLabel="< PREV"
@@ -72,7 +74,9 @@ const MoviePage = () => {
                             activeClassName="active"
                             renderOnZeroPageCount={null}
                             forcePage={pageCount - 1}
-                        />
+                            />
+                        </div>
+                        
                     </Col>
                 </Row>
             </Container>

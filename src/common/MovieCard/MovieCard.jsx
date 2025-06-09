@@ -1,6 +1,8 @@
 import { Badge } from "react-bootstrap"
 import "./MovieCard.style.css";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
+import MovieDetailPage from './../../pages/MovieDetail/MovieDetailPage';
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ( { movie }) => {
 
@@ -15,8 +17,14 @@ const MovieCard = ( { movie }) => {
         return genreNameList;
     }
 
+    const navigate = useNavigate();
+    const movieDetailPage = () => {
+        navigate(`/movies/${movie?.id}`);
+    }
+
     return (
         <div
+            onClick={movieDetailPage}
             style={{
                 backgroundImage : "url(https://media.themoviedb.org/t/p/w600_and_h900_bestv2" + `${movie?.poster_path}` + ")"}}
             className="movie-card"
