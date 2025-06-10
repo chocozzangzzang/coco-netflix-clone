@@ -12,5 +12,6 @@ export const useSearchMovieQuery = ({ keyword, pageCount }) => {
         queryKey : ['movie-search', keyword, pageCount],
         queryFn : () => fetchSearchMovie({ keyword, pageCount }),
         select : (result) => result.data,
+        staleTime : 5 * 60000,
     })
 }

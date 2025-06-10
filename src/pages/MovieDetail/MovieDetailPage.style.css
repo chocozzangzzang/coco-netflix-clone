@@ -1,14 +1,22 @@
+.detail-wrapper {
+    width : 80vw;
+    display : flex;
+    flex-direction: column;
+    margin : 0 auto;
+    gap : 20px;
+}
+
 .detail-container {
     width : 80vw;
     display: flex;
     margin : 0 auto;
     padding-top : 20px;
-    height: 90vh;
 }
 
 .detail-col1 {
     display : flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .detail-col2 {
@@ -29,4 +37,13 @@
     align-content: center;
     width : 150px;
     height: 35px;
+}
+
+.btn-box {
+    padding-left : 20px;
+    padding-top : 10px;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+    gap : 10px;
 }

@@ -1,0 +1,7 @@
+.related-movies-wrapper {
+    display : grid;
+    width : 800px;
+    grid-template-columns: repeat(2, 1fr);
+    padding : 20px;
+    gap : 10px;
+}

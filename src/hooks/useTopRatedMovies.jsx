@@ -10,4 +10,5 @@ export const useTopRatedMovies = () => {
         queryKey : ['movie-toprated'],
         queryFn : fetchTopRatedMovies,
         select : (result) => result.data,
+        staleTime : 5 * 60000,
 })}

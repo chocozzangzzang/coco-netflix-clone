@@ -10,5 +10,6 @@ export const useMovieReviewQuery = ({ id }) => {
         queryKey : ['movie-detail-review', id],
         queryFn : () => fetchMovieReviews({ id }),
         select : (result) => result.data,
+        staleTime : 5 * 60000,
     })
 }

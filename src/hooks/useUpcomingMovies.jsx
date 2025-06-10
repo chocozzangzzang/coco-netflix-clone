@@ -10,5 +10,6 @@ export const useUpcomingMovies = () => {
         queryKey : ['movie-upcoming'],
         queryFn : fetchUpcomingMovies,
         select : (result) => result.data,
+        staleTime : 5 * 60000,
     })
 }
