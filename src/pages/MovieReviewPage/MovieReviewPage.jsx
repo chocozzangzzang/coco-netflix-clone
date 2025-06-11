@@ -1,6 +1,3 @@
-import React from 'react'
-import { useMovieReviewQuery } from '../../hooks/useMovieReview'
-import { Alert } from 'react-bootstrap';
 import "./MovieReviewPage.style.css";
 import MovieReviewBox from './MovieReviewBox';
 

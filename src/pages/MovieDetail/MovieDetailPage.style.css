@@ -17,6 +17,7 @@
     display : flex;
     flex-direction: column;
     align-items: center;
+    gap : 10px;
 }
 
 .detail-col2 {
@@ -27,6 +28,7 @@
 }
 
 .badges {
+    flex : 1;
     display : flex;
     flex-direction: row;
     gap : 10px;
@@ -39,6 +41,23 @@
     height: 35px;
 }
 
+.overview-box {
+    flex : 6;
+    font-weight: 400;
+}
+
+.others-box {
+    flex : 5;
+    display : flex;
+    flex-direction: column;
+    gap : 5px;
+}
+
+.sub-infos {
+    display: flex;
+    gap : 5px;
+}
+
 .btn-box {
     padding-left : 20px;
     padding-top : 10px;
@@ -46,4 +65,51 @@
     flex-direction: row;
     justify-content: center;
     gap : 10px;
+}
+
+.modal-dialog {
+    width: 70vw !important;
+    max-width: none !important;
+    max-height: none !important;
+}
+
+.modal-custom .modal-content{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.modal-body {
+    padding: 0 !important;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.youtube-box {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;    /* 내부 padding 문제 방지 */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* iframe tag 추가하기 */
+.youtube-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0;
+  margin: 0;
+  border: none;
 }

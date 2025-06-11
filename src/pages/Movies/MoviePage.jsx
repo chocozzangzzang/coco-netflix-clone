@@ -22,7 +22,7 @@ import "./MoviePage.style.css";
     -- 영화 제목, 장르, 인기도, 줄거리, 예산 (, 단위), 개봉일
     - 리뷰 페이지 (접기 더보기 기능) o
     - 추천 영화 o -> 유사 영화로 변경
-    - 예고편
+    - 예고편 o
     - 인기순 정렬
     - 장르별 필터링
     ---->>> 배포
@@ -44,7 +44,12 @@ const MoviePage = () => {
     return (
             <Container>
                 <Row>
-                    <Col lg={4} xs={12}>FILTER</Col>
+                    <Col lg={4} xs={12}>
+                        <div className="sidebar-wrapper">
+                            <div className="select-box">SORT</div>
+                            <div className="select-box">GENRE</div>
+                        </div>
+                    </Col>
                     <Col lg={8} xs={12}>
                         <Row className="g-4">
                         {data?.results.map((movie, index) =>
@@ -76,7 +81,6 @@ const MoviePage = () => {
                             forcePage={pageCount - 1}
                             />
                         </div>
-                        
                     </Col>
                 </Row>
             </Container>
