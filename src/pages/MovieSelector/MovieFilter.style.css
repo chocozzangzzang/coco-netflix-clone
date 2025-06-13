@@ -1,0 +1,39 @@
+.select-box {
+    width: 80%;
+    height: 200px;
+    border: 2px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    padding-top : 20px;
+}
+
+.sort-top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom : 20px;
+}
+
+.badge-custom {
+    display: flex;
+    background: linear-gradient(to right, #8B0000, rgba(255, 0, 0, 0));
+    align-content: center;
+    width : auto;
+    height: 35px;
+}
+
+.genre-box {
+    width: 80%;
+    height: auto;
+    border: 2px solid white;
+    border-radius: 20px;
+    padding : 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap : 10px;
+}
+
+.txt-box {
+    width : 100%;
+    text-align: center;
+}

@@ -5,6 +5,8 @@ import MovieCard from "../../common/MovieCard/MovieCard.jsx"
 import ReactPaginate from "react-paginate";
 import { useState } from "react";
 import "./MoviePage.style.css";
+import MovieFilter from "../MovieSelector/MovieFilter.jsx";
+import MovieSorter from "../MovieSelector/MovieSorter.jsx";
 
 // 1. Navbar의 Movies를 클릭해서 이동 -> 키워드가 없음 --> popular
 // 2. 키워드로 검색한 경우 -> 관련된 영화들만 보여줌
@@ -46,8 +48,8 @@ const MoviePage = () => {
                 <Row>
                     <Col lg={4} xs={12}>
                         <div className="sidebar-wrapper">
-                            <div className="select-box">SORT</div>
-                            <div className="select-box">GENRE</div>
+                            <MovieSorter />
+                            <MovieFilter />
                         </div>
                     </Col>
                     <Col lg={8} xs={12}>
