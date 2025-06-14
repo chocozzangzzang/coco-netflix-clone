@@ -2,13 +2,12 @@ import { Badge } from "react-bootstrap";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 import "./MovieFilter.style.css";
 
-const MovieFilter = () => {
+const MovieFilter = ({ setGenre }) => {
 
-    const { data , isLoading, isError, error } = useMovieGenreQuery();
-    console.log("gen", data);
+    const { data , isLoading, isError } = useMovieGenreQuery();
 
-    const filterByGenre = ({id, name}) => {
-        alert(`${id} --> ${name}`);
+    const filterByGenre = ({ id }) => {
+        setGenre(id);
     }
 
     if(isLoading || isError) return <div className='select-box'>MovieFilter</div>

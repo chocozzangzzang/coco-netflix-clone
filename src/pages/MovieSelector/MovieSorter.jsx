@@ -2,6 +2,16 @@ import { Dropdown } from "react-bootstrap";
 import "./MovieFilter.style.css";
 
 const MovieSorter = () => {
+
+  const MENUS = [
+    'title(DESC)',
+    'title(ASC)',
+    'popularity(DESC)',
+    'popularity(ASC)',
+    'vote average(DESC)',
+    'vote average(ASC)'
+  ]
+
   return (
     <div className="select-box">
         <Dropdown data-bs-theme="dark">
@@ -16,12 +26,15 @@ const MovieSorter = () => {
                 Sort By
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1" active>Default</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Popularity(DESC)</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Popularity(ASC)</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item href="#/action-4">Title(DESC)</Dropdown.Item>
-                <Dropdown.Item href="#/action-5">Title(ASC)</Dropdown.Item>
+                <Dropdown.Item href="#/action-0" active>Default</Dropdown.Item>
+                {
+                  MENUS.map((menu, index) => (
+                    <>
+                      {!(index % 2) ? <Dropdown.Divider /> : <></>}
+                      <Dropdown.Item href={`#/action-${index + 1}`}>{menu}</Dropdown.Item>
+                    </>
+                  ))
+                }
                 </Dropdown.Menu>
       </Dropdown>
     </div>

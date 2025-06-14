@@ -3,10 +3,11 @@ import { useSearchMovieQuery } from "../../hooks/useSearchMovie"
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../../common/MovieCard/MovieCard.jsx"
 import ReactPaginate from "react-paginate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./MoviePage.style.css";
 import MovieFilter from "../MovieSelector/MovieFilter.jsx";
 import MovieSorter from "../MovieSelector/MovieSorter.jsx";
+import { useFilterMovieQuery } from "../../hooks/useFilterMovie.jsx";
 
 // 1. Navbar의 Movies를 클릭해서 이동 -> 키워드가 없음 --> popular
 // 2. 키워드로 검색한 경우 -> 관련된 영화들만 보여줌
@@ -33,13 +34,18 @@ const MoviePage = () => {
     const [ query, setQuery ] = useSearchParams();
     const keyword = query.get('keyword'); 
     const [ pageCount, setPageCount ] = useState(1);
-    const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, pageCount });
-    
-    // console.log(data);
+    const [ genre, setGenre ] = useState("");
 
+    const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, pageCount });
+    const { data : filtered } = useFilterMovieQuery({ genre, pageCount });
+    
     const handlePageClick = ({selected}) => {
         setPageCount(selected + 1);
     }
+
+    useEffect(() => {
+        setPageCount(1);
+    }, [genre]);
     
     if(isLoading) return <h1>Loading....</h1>
     if(isError) return <Alert>{error.message}</Alert>
@@ -49,12 +55,12 @@ const MoviePage = () => {
                     <Col lg={4} xs={12}>
                         <div className="sidebar-wrapper">
                             <MovieSorter />
-                            <MovieFilter />
+                            <MovieFilter genre={genre} setGenre={setGenre}/>
                         </div>
                     </Col>
                     <Col lg={8} xs={12}>
                         <Row className="g-4">
-                        {data?.results.map((movie, index) =>
+                        {(filtered? filtered : data)?.results.map((movie, index) =>
                             (<Col key={index} lg={4} xs={12}>
                                 <MovieCard movie={movie} />
                             </Col>
@@ -66,7 +72,7 @@ const MoviePage = () => {
                             onPageChange={handlePageClick}
                             pageRangeDisplayed={2}
                             marginPagesDisplayed={2}
-                            pageCount={data?.total_pages} // 전체 페이지
+                            pageCount={(filtered? filtered : data)?.total_pages} // 전체 페이지
                             previousLabel="< PREV"
                             pageClassName="page-item"
                             pageLinkClassName="page-link"
