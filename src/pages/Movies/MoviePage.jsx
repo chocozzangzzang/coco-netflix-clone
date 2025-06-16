@@ -34,10 +34,13 @@ const MoviePage = () => {
     const [ query, setQuery ] = useSearchParams();
     const keyword = query.get('keyword'); 
     const [ pageCount, setPageCount ] = useState(1);
-    const [ genre, setGenre ] = useState("");
+
+    const [ genreName, setGenreName ] = useState("");
+    const [ genreId, setGenreId ] = useState("");
+    const [ sortBy, setSortBy ] = useState("");
 
     const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, pageCount });
-    const { data : filtered } = useFilterMovieQuery({ genre, pageCount });
+    const { data : filtered } = useFilterMovieQuery({ genreId, sortBy, pageCount });
     
     const handlePageClick = ({selected}) => {
         setPageCount(selected + 1);
@@ -45,7 +48,7 @@ const MoviePage = () => {
 
     useEffect(() => {
         setPageCount(1);
-    }, [genre]);
+    }, [genreId, genreName, sortBy]);
     
     if(isLoading) return <h1>Loading....</h1>
     if(isError) return <Alert>{error.message}</Alert>
@@ -54,8 +57,8 @@ const MoviePage = () => {
                 <Row>
                     <Col lg={4} xs={12}>
                         <div className="sidebar-wrapper">
-                            <MovieSorter />
-                            <MovieFilter genre={genre} setGenre={setGenre}/>
+                            <MovieSorter setSortBy={setSortBy} />
+                            <MovieFilter genreName={genreName} setGenreName={setGenreName} setGenreId={setGenreId}/>
                         </div>
                     </Col>
                     <Col lg={8} xs={12}>
