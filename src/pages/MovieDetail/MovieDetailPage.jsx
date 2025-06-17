@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useSimilarMoviesQuery } from "../../hooks/useSimilarMovies";
 import { useMovieTrailersQuery } from "../../hooks/useMovieTrailers";
 import YouTube from "react-youtube";
+import LoadingSpinner from "../Homepage/components/LoadingSpinner";
 
 const MovieDetailPage = () => {
     const { id } = useParams();
@@ -26,7 +27,8 @@ const MovieDetailPage = () => {
     const handleBtnState = () => {
         setReviewOrRelated((prev) => !prev);
     }
-    if(isLoading) return <h1>Loading...</h1>
+    if(isLoading) 
+        return <LoadingSpinner loading={isLoading}/>
     if(isError) return <Alert>{error.message}</Alert>
     return (
         <div className="detail-wrapper">

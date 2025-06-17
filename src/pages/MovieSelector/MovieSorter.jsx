@@ -15,8 +15,11 @@ const MovieSorter = ({ setSortBy }) => {
 
   const [ selectedMenu, setSelectedMenu ] = useState("");
   const filtering = (index) => {
-    setSelectedMenu(MENUS[index].display);
-    setSortBy(MENUS[index].origin);
+    if(index === "-1") {setSelectedMenu(""); setSortBy("");}
+    else {
+      setSelectedMenu(MENUS[index].display);
+      setSortBy(MENUS[index].origin);
+    }
   }
 
   return (
@@ -33,7 +36,7 @@ const MovieSorter = ({ setSortBy }) => {
                 {selectedMenu ? selectedMenu : "Sort By"}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                <Dropdown.Item eventKey="" active={selectedMenu === ""}>--</Dropdown.Item>
+                <Dropdown.Item eventKey={-1} active={selectedMenu === ""}>--</Dropdown.Item>
                 {
                   MENUS.map((menu, index) => (
                     <>

@@ -8,6 +8,7 @@ import "./MoviePage.style.css";
 import MovieFilter from "../MovieSelector/MovieFilter.jsx";
 import MovieSorter from "../MovieSelector/MovieSorter.jsx";
 import { useFilterMovieQuery } from "../../hooks/useFilterMovie.jsx";
+import LoadingSpinner from "../Homepage/components/LoadingSpinner.jsx";
 
 // 1. Navbar의 Movies를 클릭해서 이동 -> 키워드가 없음 --> popular
 // 2. 키워드로 검색한 경우 -> 관련된 영화들만 보여줌
@@ -50,7 +51,8 @@ const MoviePage = () => {
         setPageCount(1);
     }, [genreId, genreName, sortBy]);
     
-    if(isLoading) return <h1>Loading....</h1>
+    if(isLoading) 
+        return <LoadingSpinner loading={isLoading}/>
     if(isError) return <Alert>{error.message}</Alert>
     return (
             <Container>
